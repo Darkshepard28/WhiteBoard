@@ -13,9 +13,10 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String firstName;
     private String lastName;
-    private long ID;
+
 
     @ManyToMany
     @JoinTable(name = "teacher_student", joinColumns = @JoinColumn(name = "student_id"),
@@ -26,16 +27,14 @@ public class Student {
 
     }
 
-    public Student(String firstName, String lastName, long ID){
+    public Student(String lastName, String firstName){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.ID = ID;
     }
 
-    public Student(String firstName, String lastName, long ID, Set<Staff> teachers){
+    public Student(String firstName, String lastName, Set<Staff> teachers){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.ID = ID;
         this.teachers = teachers;
     }
 
@@ -55,12 +54,12 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Set<Staff> getTeachers() {

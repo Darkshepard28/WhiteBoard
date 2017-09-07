@@ -12,28 +12,28 @@ public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String firstName;
     private String lastName;
-    private long ID;
+
 
     @ManyToMany(mappedBy = "teachers")
     private Set<Student> students = new HashSet<>();
 
-
-    public Staff() {
+    public Staff(){
 
     }
 
-    public Staff(String firstName, String lastName, long ID){
+
+    public Staff(String lastName, String firstName){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.ID = ID;
     }
 
-    public Staff(String firstName, String lastName, long ID, Set<Student> students){
+    public Staff(String firstName, String lastName, Set<Student> students){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.ID = ID;
+
         this.students = students;
     }
 
@@ -53,12 +53,12 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Set<Student> getStudents() {
