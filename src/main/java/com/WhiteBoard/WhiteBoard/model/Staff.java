@@ -16,6 +16,9 @@ public class Staff {
     private String firstName;
     private String lastName;
 
+    @OneToOne
+    private Institution institution;
+
 
     @ManyToMany(mappedBy = "teachers")
     private Set<Student> students = new HashSet<>();
@@ -25,15 +28,16 @@ public class Staff {
     }
 
 
-    public Staff(String lastName, String firstName){
+    public Staff(String lastName, String firstName, Institution institution){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.institution = institution;
     }
 
-    public Staff(String firstName, String lastName, Set<Student> students){
+    public Staff(String firstName, String lastName, Institution institution, Set<Student> students){
         this.firstName = firstName;
         this.lastName = lastName;
-
+        this.institution = institution;
         this.students = students;
     }
 
@@ -67,5 +71,13 @@ public class Staff {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public Institution getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
     }
 }

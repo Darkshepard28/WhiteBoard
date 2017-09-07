@@ -17,6 +17,9 @@ public class Student {
     private String firstName;
     private String lastName;
 
+    @OneToOne
+    private Institution institution;
+
 
     @ManyToMany
     @JoinTable(name = "teacher_student", joinColumns = @JoinColumn(name = "student_id"),
@@ -27,14 +30,24 @@ public class Student {
 
     }
 
-    public Student(String lastName, String firstName){
+    public Student(String lastName, String firstName, Institution institution){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.institution = institution;
     }
 
-    public Student(String firstName, String lastName, Set<Staff> teachers){
+    public Institution getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
+    }
+
+    public Student(String firstName, String lastName, Institution institution, Set<Staff> teachers){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.institution = institution;
         this.teachers = teachers;
     }
 

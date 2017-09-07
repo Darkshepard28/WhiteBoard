@@ -1,8 +1,10 @@
 package com.WhiteBoard.WhiteBoard.bootstrap;
 
 
+import com.WhiteBoard.WhiteBoard.model.Institution;
 import com.WhiteBoard.WhiteBoard.model.Staff;
 import com.WhiteBoard.WhiteBoard.model.Student;
+import com.WhiteBoard.WhiteBoard.repositories.InstitutionRepository;
 import com.WhiteBoard.WhiteBoard.repositories.StaffRepository;
 import com.WhiteBoard.WhiteBoard.repositories.StudentRepository;
 import org.springframework.context.ApplicationListener;
@@ -17,10 +19,13 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 
     private StaffRepository staffRepository;
     private StudentRepository studentRepository;
+    private InstitutionRepository institutionRepository;
 
-    public DevBootstrap(StaffRepository staffRepository, StudentRepository studentRepository) {
+
+    public DevBootstrap(StaffRepository staffRepository, StudentRepository studentRepository, InstitutionRepository institutionRepository) {
         this.staffRepository = staffRepository;
         this.studentRepository = studentRepository;
+        this.institutionRepository = institutionRepository;
     }
 
     @Override
@@ -35,13 +40,18 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
     private void initData(){
 
         //Teacher
-        Staff professor = new Staff("Doc","Professor" );
-        Student student = new Student("Big", "Kid");
+        Institution institution = new Institution();
+        institution.setName("WKU");
+        institutionRepository.save(institution);
+        
+        Staff professor = new Staff("Doc","Professor", institution );
+        Student student = new Student("Big", "Kid", institution);
         professor.getStudents().add(student);
         student.getTeachers().add(professor);
 
         staffRepository.save(professor);
         studentRepository.save(student);
+
 
     }
 }
