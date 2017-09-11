@@ -13,6 +13,10 @@ public class StudentController {
 
     private StudentRepository studentRepository;
 
+    public StudentController(StudentRepository studentRepository){
+        this.studentRepository = studentRepository;
+    }
+
     @RequestMapping("/students")
     public String getStudents(Model model){
 
