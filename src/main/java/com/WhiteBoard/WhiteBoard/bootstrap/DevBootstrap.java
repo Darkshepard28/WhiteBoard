@@ -43,7 +43,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
         Institution institution = new Institution();
         institution.setName("WKU");
         institutionRepository.save(institution);
-        
+
         Staff professor = new Staff("Doc","Professor", institution );
         Student student = new Student("Big", "Kid", institution);
         professor.getStudents().add(student);
